@@ -138,10 +138,10 @@ console.log(`task 3`,scarlett.toString());
 /* 
   TASK 4
   In your own words explain the four principles for the "this" keyword below:
-  1. 
-  2. 
-  3. 
-  4. 
+  1. The value of "this" will be the window/console Object in the global scope.
+  2. If a preceding dot calls a function, "this." is the object before the dot.
+  3. "This" refers to the specific instance of the object that is created and returned by the constructor function, whenever we use a constructor function.
+  4. "This" is explicitly defined, whenever we use JavaScript's call or apply method.
 */
 
 
