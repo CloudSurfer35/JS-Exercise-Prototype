@@ -39,12 +39,37 @@ Airplane.prototype.land = function () {
         + It should return a string with `name` and `age`. Example: "Mary, 50"
 */
 
-function Person() {
-  
+function Person(name, age) {//1 by 1
+  this.name = name;
+  this.age = age;
+  this.stomach = [];
 }
+Person.prototype.eat = function (edible) {
+  if (this.stomach.length < 10) {
+    this.stomach.push(edible);
+  } //if its not less than 10 the food is not going to push so we don't really need an else here
+}
+Person.prototype.poop = function () {
+  this.stomach = []; //set back to empty array to empty the stomach
+}
+Person.prototype.toString = function () {
+  return `${this.name}, ${this.age}`;
+}
+const matt = new Person("Matt", 29);
+const leo = new Person("Leo", 18);
 
+matt.eat("pizza");
+matt.eat("taco");
+matt.eat("sushi");
+matt.eat("pasta");
+matt.eat("sandwich");
 
+console.log(matt.stomach);
 
+matt.poop();
+
+console.log(`task 1`, matt.stomach);
+console.log(`task 1`, matt.toString());
 
 
 
@@ -63,9 +88,21 @@ function Person() {
         + The `drive` method should return a string "I ran out of fuel at x miles!" x being `odometer`.
 */
 
-function Car() {
-  
+ function Car(model, milesPerGallon) {
+   this.model = model;
+   this.milesPerGallon = milesPerGallon
+   this.tank = 0
+   this.odometer = 0
+ }
+
+Car.prototype.fill = function(gallons){
+  return this.tank = this.tank + gallons
 }
+
+const car = new Car('Honda', 30)
+car.fill(30)
+
+console.log(`task 2`, car);
 
 
 /*
@@ -75,10 +112,28 @@ function Car() {
     - Besides the methods on Person.prototype, babies have the ability to `.play()`:
         + Should return a string "Playing with x", x being the favorite toy.
 */
-function Baby() {
- 
-}
+ function Baby(name, age, favoriteToy) { // Insertion of Baby function parameters, as well as Parent contructor parameters
+    Person.call(this, name, age) // Calling in the Person constructor, all children have to inherit everything from Parent contructor
+    this.favoriteToy = favoriteToy
+ }
 
+Baby.prototype = Object.create(Person.prototype) // This allows the Baby function to inherit all of Persons prototypes
+Baby.prototype.play = function () {
+  return `Playing with ${this.favoriteToy}`;
+}
+const scarlett = new Baby('scarlett', 4, 'unicorn');
+scarlett.play()
+console.log(scarlett.play());
+console.log(scarlett);
+
+scarlett.eat("sandwich");
+
+console.log(`task 3`,scarlett.stomach);
+
+scarlett.poop();
+
+console.log(`task 3`, scarlett.stomach);
+console.log(`task 3`,scarlett.toString());
 
 /* 
   TASK 4
